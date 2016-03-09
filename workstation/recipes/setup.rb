@@ -6,14 +6,8 @@ package 'git' do
 	action :install
 end
 
-file '/etc/motd' do
-	content "Property of ...
-
-	IPADDRESS: #{node['ipaddress']}
-	HOSTNAME: #{node['hostname']}
-	MEMORY: #{node['memory']}
-	CPU: #{node['cpu']['0']['mhz']}
-"
+template '/etc/motd' do
+	source 'motd.erb'
 	mode '0644'
 	owner 'root'
 	group 'root'
